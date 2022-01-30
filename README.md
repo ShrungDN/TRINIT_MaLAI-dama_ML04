@@ -1,5 +1,12 @@
 # TRINIT_MaLAI-dama_ML04
 
+# Requirements:
+Tensorflow
+Flask
+Pandas
+Numpy
+SKlearn
+
 ## Final model:
 Tensorflow model that was trained on the dataset
 
