@@ -11,6 +11,12 @@ app = Flask(__name__)
 model = tf.keras.models.load_model('finalmodel')
 ref_df = pd.read_csv('referencedf.csv')
 
+minclose = 55.07
+maxclose = 215.8
+
+def get_actual(scaled, min, max):
+    return min + scaled*(max-min)
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -31,13 +37,9 @@ def predict():
     RSI = ref_df['RSI'][date_index]
 
     final_features = np.array([[[close_scaled, OBV_scaled, RSI]]])
-    prediction = model.predict([final_features])
-    minclose = 55.07
-    maxclose = 215.8
-    def get_actual(scaled, min, max):
-        return min + scaled*(max-min)
+    prediction = model.predict([final_features])        
     output = get_actual(prediction[0][0], minclose, maxclose)
-    # output = prediction[0][0]
+    
     return render_template('index.html', prediction_text=f'Predicted Close Price for Tomorrow is: $ {output}')  
 
 
