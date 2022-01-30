@@ -2,9 +2,13 @@
 
 # Requirements:
 Tensorflow
+
 Flask
+
 Pandas
+
 Numpy
+
 SKlearn
 
 ## Final model:
